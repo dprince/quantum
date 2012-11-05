@@ -38,7 +38,7 @@ from quantum import context
 from quantum.db import db_base_plugin_v2
 from quantum.db import l3_db
 from quantum.db import models_v2
-from quantum.extensions import extensions
+from quantum.api import extensions
 from quantum.extensions import l3
 from quantum import manager
 from quantum.openstack.common import cfg

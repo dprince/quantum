@@ -17,7 +17,7 @@
 
 from quantum.api.v2 import attributes
 from quantum.api.v2 import base
-from quantum.extensions import extensions
+from quantum.api import extensions
 from quantum.manager import QuantumManager
 from quantum.openstack.common import cfg
 from quantum import quota

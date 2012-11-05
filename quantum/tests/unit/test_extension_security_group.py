@@ -28,7 +28,7 @@ from quantum import context
 from quantum.db import api as db
 from quantum.db import db_base_plugin_v2
 from quantum.db import securitygroups_db
-from quantum.extensions.extensions import PluginAwareExtensionManager
+from quantum.api.extensions import PluginAwareExtensionManager
 from quantum.extensions import securitygroup as ext_sg
 from quantum.manager import QuantumManager
 from quantum.openstack.common import cfg
