@@ -163,8 +163,7 @@ class AgentExtRpcCallback(object):
 
     def report_state(self, context, **kwargs):
         """Report state from agent to server. """
-        time = kwargs['time']
-        time = timeutils.parse_strtime(time)
+        time = timeutils.parse_strtime(str(kwargs['time']))
         if self.START_TIME > time:
             LOG.debug(_("Message with invalid timestamp received"))
             return
