@@ -177,8 +177,8 @@ class IptablesFirewallDriver(firewall.FirewallDriver):
 
     def _ip_spoofing_rule(self, port, ipv4_rules, ipv6_rules):
         #Note(nati) allow dhcp or RA packet
-        ipv4_rules += ['-p udp --sport 68 --dport 67 -j RETURN']
-        ipv6_rules += ['-p icmpv6 -j RETURN']
+        ipv4_rules += ['-p udp --sport 68 --dport 67 -j ACCEPT']
+        ipv6_rules += ['-p icmpv6 -j ACCEPT']
         for ip in port['fixed_ips']:
             if netaddr.IPAddress(ip).version == 4:
                 ipv4_rules += ['! -s %s -j DROP' % ip]
@@ -220,7 +220,7 @@ class IptablesFirewallDriver(firewall.FirewallDriver):
         self._drop_invalid_packets(iptables_rules)
         self._allow_established(iptables_rules)
         for rule in security_group_rules:
-            args = ['-j RETURN']
+            args = ['-j ACCEPT']
             args += self._protocol_arg(rule.get('protocol'))
             args += self._port_arg('dport',
                                    rule.get('protocol'),
@@ -247,7 +247,7 @@ class IptablesFirewallDriver(firewall.FirewallDriver):
 
     def _allow_established(self, iptables_rules):
         # Allow established connections
-        iptables_rules += ['-m state --state ESTABLISHED,RELATED -j RETURN']
+        iptables_rules += ['-m state --state ESTABLISHED,RELATED -j ACCEPT']
         return iptables_rules
 
     def _protocol_arg(self, protocol):
